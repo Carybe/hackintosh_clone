@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#ORIGINAL_FIRST_USED_SECTOR=666396672
+
+TABLE_STATUS=$(fdisk -l /dev/sda)
+
+FULL_SECTOR_COUNT=$(echo "${TABLE_STATUS}" grep -o '[1-9]*\ *sectors$' | cut -d' ' -f1)
+LAST_USED_SECTOR=$(echo "${TABLE_STATUS}" | grep sda3 | tr -s ' ' | cut -d' ' -f3)
+
+FREE_SPACE=$(( FULL_SECTOR_COUNT - LAST_USED_SECTOR ))
+
+# For this build we assume a 160GB free space:
+# 50GB  -> root
+# 100GB -> home
+# 4GB+ -> swap
+
+ROOT_fullsize=99438592
+ROOT_size=37319241
+ROOT_S=$(( LAST_USED_SECTOR + 1 ))
+ROOT_F=$(( ROOT_S + ROOT_size - 1 ))
+
+HOME_fullsize=195311616
+HOME_size=5317577
+HOME_S=$(( ROOT_S + ROOT_fullsize ))
+HOME_F=$(( HOME_S + HOME_size - 1 ))
+
+SWAP_S=$(( HOME_S + HOME_fullsize ))
+
+# arbitrary minimum swap size in sectors
+SWAP_minsize=10000000
+
+
+FULLSIZE=$(( ROOT_fullsize + HOME_fullsize + SWAP_minsize ))
