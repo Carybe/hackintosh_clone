@@ -17,6 +17,14 @@ done
 NEW_HOSTNAME=$(grep -A1 '>ComputerName<' /mnt/Library/Preferences/SystemConfiguration/preferences.plist | tail -n1 | sed 's/.*<string>\([^<]\+\).*/\1/')
 echo "${NEW_HOSTNAME}" | tr ' !@#$%^&*()+=`~";:/?>.<,' '_' > /etc/hostname
 
+# Audio connector bug
+# Details in: https://help.ubuntu.com/community/Intel_iMac#Sound
+# Not sure if breaks differents versions of macs, so need to try these different options:
+#echo 'options snd-hda-intel model=auto' >> /etc/modprobe.d/alsa-base.conf
+#echo 'options snd-hda-intel model=intel_mac_auto' >> /etc/modprobe.d/alsa-base.conf
+#echo 'options snd-hda-intel model=imac27' >> /etc/modprobe.d/alsa-base.conf
+#echo 'options snd-hda-intel model=imac27_122' >> /etc/modprobe.d/alsa-base.conf
+
 #SWAP
 SWAP_UUID='c51486df-09b3-41ea-be1c-cccc97f75f49'
 mkswap --uuid="${SWAP_UUID}" /dev/sda6
