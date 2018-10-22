@@ -20,6 +20,10 @@ echo "${NEW_HOSTNAME}" | tr ' !@#$%^&*()+=`~";:/?>.<,' '_' > /etc/hostname
 # Audio connector bug
 # Details in: https://help.ubuntu.com/community/Intel_iMac#Sound
 # Not sure if breaks differents versions of macs, so need to try these different options:
+if lspci | grep -q Whistler
+then
+        echo 'options snd-hda-intel model=imac27_122' >> /etc/modprobe.d/alsa-base.conf
+fi
 #echo 'options snd-hda-intel model=auto' >> /etc/modprobe.d/alsa-base.conf
 #echo 'options snd-hda-intel model=intel_mac_auto' >> /etc/modprobe.d/alsa-base.conf
 #echo 'options snd-hda-intel model=imac27' >> /etc/modprobe.d/alsa-base.conf
