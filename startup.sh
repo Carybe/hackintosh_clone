@@ -1,7 +1,8 @@
 #!/bin/bash -xe
 
+# First script to be run on both systems (client AND server)
 
-LOCAL="/home/user/Desktop/JOGO_DO_GOLEIRO"
+LOCAL=$(dirname $(realpath $0))
 
 if [ $UID  -ne 0 ]
 then
@@ -19,5 +20,9 @@ cd /
 apt install pigz openssh-server -y
 systemctl restart ssh
 
-umount -l /home/user/Desktop/JOGO_DO_GOLEIRO
-umount -l /boot/efi
+MOUNTED_POINTS=$(lsblk --all --noheadings --output MOUNTPOINT | grep -v ^$)
+
+for mp in "${MOUNTED_POINTS}"
+do
+	umount -l $mp
+done

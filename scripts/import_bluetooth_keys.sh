@@ -1,5 +1,8 @@
 #!/bin/bash -xe
 
+# DOES NOT WORKS (yet)
+# Script to import the MACOS bluetooth link keys to linux environment
+
 if [ $UID -ne 0 ]
 then
 	echo "This script must be run as root" >&2
@@ -16,9 +19,9 @@ linux2apple_mac()
 	echo $1 | tr [[:upper:]] [[:lower:]] | tr ':' '-'
 }
 
-#mount /dev/sda2 /mnt
+mount /dev/sda2 /mnt
 
-#trap 'cd /; umount /mnt' ERR EXIT
+trap 'cd /; umount /mnt' ERR EXIT
 
 ACTIVE_BLUETOOTH_IF=$(hcitool  dev  | tail -n +2 | tr '\t' ' '| cut -d' ' -f3)
 BLUETOOTH_KEY_FILE="/mnt/Users/numec/Desktop/bluetooth.keys"
@@ -38,7 +41,7 @@ cd /var/lib/bluetooth/*/ || ( echo "This script works only for single Bluetooth 
 
 
 APPLE_MACS=$(grep \< "${BLUETOOTH_KEY_FILE}" | tr -d ' ' | cut -d'=' -f1 | tr -d '"')
-LINUX_MACS="$(for i in ${APPLE_MACS}; do apple2linux_mac $i; done)"
+LINUX_MACS="$(for mac in ${APPLE_MACS}; do apple2linux_mac $mac; done)"
 
 #MOUSE_MAC=$(echo "${APPLE_MACS}" | grep -i f1)
 #KEYBOARD_MAC=$(echo "${APPLE_MACS}" | grep -iv f1)
@@ -114,4 +117,3 @@ Product=597
 Version=80
 
 EOF
-

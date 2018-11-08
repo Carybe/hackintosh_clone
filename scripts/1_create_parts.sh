@@ -1,5 +1,7 @@
 #!/bin/bash -xe
 
+# Checks disk partitions and create the necessary partitions 
+
 DIR=$(realpath $(dirname $0))
 
 source "${DIR}"/def
@@ -38,14 +40,6 @@ then
 	echo "Theres something wrong, this system has more partitions than the expected, see the source of this script for more info."
 	exit 1
 fi
-
-# Overly specific check for 1st iteration
-#if ! echo "${TABLE_STATUS}" | grep sda |grep --quiet $FULL_SECTOR_COUNT
-#then
-#	echo "Theres something wrong, the disk has a different amount of sectors than the expected."
-#	exit 2
-#fi
-
 
 ### Checks if the free partition was created right
 if [ $FREE_SPACE -lt $FULLSIZE ]

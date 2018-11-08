@@ -1,6 +1,5 @@
-#!/bin/bash
-
-#ORIGINAL_FIRST_USED_SECTOR=666396672
+# File with common definitions
+# should not be run
 
 TABLE_STATUS=$(fdisk -l /dev/sda)
 

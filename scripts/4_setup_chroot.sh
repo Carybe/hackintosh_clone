@@ -1,5 +1,7 @@
 #!/bin/bash -xe
 
+# Sets the chroot ennvironment
+
 mount /dev/sda4 /mnt
 mount /dev/sda1 /mnt/boot/efi
 mount -o force,rw /dev/sda2 /mnt/mnt

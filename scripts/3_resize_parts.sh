@@ -1,5 +1,7 @@
 #!/bin/bash -xe
 
+# Resize the hosts shrunk partitions to fit the available space between partitions
+
 DIR=$(realpath $(dirname $0))
 
 source "${DIR}"/def
@@ -23,4 +25,3 @@ e2fsck -vfDy /dev/sda4 || true
 
 e2fsck -vfDp /dev/sda5 || true
 e2fsck -vfDy /dev/sda5 || true
-

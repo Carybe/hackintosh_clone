@@ -1,5 +1,9 @@
 #!/bin/bash -xe
 
+# Script to make the necessary modifications in the system to either
+# differentiate its environment or to fix minor problems that might arise
+# from a duplicated system in the same network
+
 # Copy macos scripts to its host
 cp /tmp/scripts/get_bluetooth_keys.sh /mnt/Users/numec/Desktop
 

@@ -1,5 +1,7 @@
 #!/bin/bash -xe
 
+# Wrapper to run all the other scripts
+
 if [ $# -lt 1 ]
 then
         echo 'You must specify a host from which will receive the images.'
