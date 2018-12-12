@@ -3,7 +3,7 @@
 
 TABLE_STATUS=$(fdisk -l /dev/sda)
 
-FULL_SECTOR_COUNT=$(echo "${TABLE_STATUS}" grep -o '[1-9]*\ *sectors$' | cut -d' ' -f1)
+FULL_SECTOR_COUNT=$(echo "${TABLE_STATUS}" | grep -o '[1-9]*\ *sectors$' | cut -d' ' -f1)
 LAST_USED_SECTOR=$(echo "${TABLE_STATUS}" | grep sda3 | tr -s ' ' | cut -d' ' -f3)
 
 FREE_SPACE=$(( FULL_SECTOR_COUNT - LAST_USED_SECTOR ))
