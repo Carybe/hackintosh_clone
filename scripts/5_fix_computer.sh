@@ -5,7 +5,7 @@
 # from a duplicated system in the same network
 
 # Copy macos scripts to its host
-cp /tmp/scripts/get_bluetooth_keys.sh /mnt/Users/numec/Desktop
+cp /tmp/scripts/extra/get_bluetooth_keys.sh /mnt/Users/numec/Desktop
 
 # BLUETOOTH
 bluetoothd &

@@ -1,0 +1,11 @@
+This is just a simple suite of scripts that I use to clone a dualboot hackintosh setup between some machines.
+It assumes that the system you are running ins't the one you are manipulating (duh) and that you have previously
+shrunk the clients disks and setup the environment you wish.
+
+The execution is pretty straightforward, you just run the startup script and then you run the wrapper with the
+given parameters.
+
+
+This repo also includes a nice little script called reducto (that shrinks ext partitions to their smallest size)
+and a dual script to get and import bluetooth keys from a MacOS system to a Linux system running in the same
+system (this is for those horrendous Apples 'Magic<peripheral>').
