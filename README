@@ -1,3 +1,5 @@
+(Atention this is a VERY specific repository and proly suits only my needs and only for the time being.)
+
 This is just a simple suite of scripts that I use to clone a dualboot hackintosh setup between some machines.
 It assumes that the system you are running ins't the one you are manipulating (duh) and that you have previously
 shrunk the clients disks and setup the environment you wish.
