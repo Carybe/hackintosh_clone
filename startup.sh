@@ -12,8 +12,8 @@ fi
 
 # Setup SSH keys
 mkdir -p /root/.ssh/
-cp "${LOCAL}"/id_rsa /root/.ssh/
-cp "${LOCAL}"/id_rsa.pub /root/.ssh/authorized_keys
+cp "${LOCAL}"ssh//id_rsa /root/.ssh/
+cp "${LOCAL}"/ssh/id_rsa.pub /root/.ssh/authorized_keys
 cp -r "${LOCAL}"/scripts /
 
 cd /
