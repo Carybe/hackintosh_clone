@@ -10,6 +10,7 @@ then
 	exit 1
 fi
 
+# Setup SSH keys
 mkdir -p /root/.ssh/
 cp "${LOCAL}"/id_rsa /root/.ssh/
 cp "${LOCAL}"/id_rsa.pub /root/.ssh/authorized_keys
@@ -17,11 +18,13 @@ cp -r "${LOCAL}"/scripts /
 
 cd /
 
-apt install pigz openssh-server -y
+# Installs dependencies
+apt install parted fdisk e2fsprogs pigz openssh-client openssh-server -y
 systemctl restart ssh
 
 MOUNTED_POINTS=$(lsblk --all --noheadings --output MOUNTPOINT | grep -v ^$)
 
+# Let the drive be removed
 for mp in "${MOUNTED_POINTS}"
 do
 	umount -l $mp
